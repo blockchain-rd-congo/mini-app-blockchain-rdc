@@ -30,7 +30,8 @@ a.card:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .card span{display:block;font-size:15px;color:var(--soft);margin-top:2px}
 .card.lock{opacity:.6}
 .card.done{border-color:var(--ok)}
-.st{display:inline-block;margin-top:8px;font-weight:600;font-size:15px;padding:4px 12px;border-radius:99px;background:var(--yellow);color:#122F5A}
+.st{display:inline-block;margin-top:8px;font-weight:600;font-size:15px;padding:4px 12px;border-radius:99px;background:#F5D13D;color:#122F5A;font-weight:800;font-size:16px;padding:8px 20px}
+h2{font-size:20px;font-weight:800;margin:6px 0 12px}
 .card.done .st{background:transparent;border:1.5px solid var(--ok);color:var(--ok)}
 .card.lock .st{background:transparent;border:1.5px solid var(--line);color:var(--soft)}
 .note{font-size:14px;color:var(--soft);margin-top:22px}
@@ -41,9 +42,10 @@ button.r{font:inherit;font-size:14px;background:none;border:none;color:var(--sof
 <main>
 <div class="top"><img src="logo.png" alt="Logo Blockchain RD Congo" onerror="this.remove()"><div><p class="brand">Blockchain RD Congo</p><p class="sig">Comprendre. Connecter. Construire. Innover.</p></div></div>
 <h1>Apprends la blockchain, pas à pas.</h1>
-<p>Des leçons courtes, des exemples simples et un quiz à la fin de chaque module. Avance à ton rythme.</p>
+<p>Blockchain RD Congo est une initiative éducative et communautaire. Cet outil t’aide à comprendre la blockchain et le Web3 pas à pas, avec des exemples simples, pour pouvoir un jour explorer et construire avec cette technologie.</p>
 <div class="bar"><i id="fill"></i></div>
 <p class="pg" id="pg"></p>
+<h2>Les 6 modules du parcours</h2>
 <div id="list"></div>
 <p class="note">Pour l’instant, ta progression est enregistrée uniquement sur ton téléphone.</p>
 <button class="r" id="reset">Effacer ma progression (phase de test)</button>
@@ -68,7 +70,8 @@ function draw(){
  document.getElementById("list").innerHTML=h;
  document.getElementById("pg").textContent=n+" sur "+mods.length+" modules terminés";
  document.getElementById("fill").style.width=Math.round(n/mods.length*100)+"%"}
-document.getElementById("reset").onclick=function(){if(confirm("Effacer ta progression sur cet appareil ?")){try{localStorage.removeItem("brdc_v1_progress")}catch(e){}draw()}};
+function wipe(){try{localStorage.removeItem("brdc_v1_progress")}catch(e){}draw()}
+document.getElementById("reset").onclick=function(){var q="Effacer ta progression sur cet appareil ?";try{if(window.Telegram&&Telegram.WebApp&&Telegram.WebApp.showConfirm){Telegram.WebApp.showConfirm(q,function(ok){if(ok)wipe()});return}}catch(e){}if(confirm(q))wipe()};
 draw();
 </script>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>

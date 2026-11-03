@@ -34,7 +34,7 @@ th,td{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left;verti
 th{font-weight:800}
 .nav{display:flex;gap:10px;margin-top:22px}
 button{font:inherit;font-weight:600;border-radius:14px;padding:14px 18px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
-button.main{background:var(--yellow);border-color:var(--yellow);color:#122F5A;flex:1}
+button.main{flex:1}
 button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .opt{display:block;width:100%;text-align:left;margin:0 0 10px;background:var(--card);border-color:var(--line);font-weight:400}
 .opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
@@ -71,6 +71,46 @@ ul{padding-left:20px;margin:0 0 14px}li{margin-bottom:6px}
 @media (prefers-reduced-motion:reduce){.fi,.in,.ill .rx{animation:none;opacity:1}.out{display:none}.tint1 .bk,.tint2 .bk,.tint3 .bk{animation:none;fill:#f2a79d}}
 .home{color:inherit;font-weight:600}
 .home{color:var(--blue);font-weight:600;text-decoration:none}
+
+.ill .bk{fill:#F7F5EE;stroke:#122F5A;stroke-width:3}
+.ill .bt{font-weight:600;font-size:11px;fill:#122F5A}
+.ill .rx{font-weight:800;font-size:20px;fill:#d94b3d;opacity:0;animation:fi .3s 1s forwards}
+.fi{opacity:0;animation:fi .5s forwards}
+.in{opacity:0;animation:fi .4s 1s forwards}
+.out{animation:fo .4s 1s forwards}
+.slide{animation:sl 1s .3s both}
+@keyframes fi{to{opacity:1}}
+@keyframes fo{to{opacity:0}}
+@keyframes sl{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fi,.in,.ill .rx,.slide{animation:none;opacity:1}.out{display:none}}
+ol{padding-left:22px;margin:0 0 14px}
+a.btn{font:inherit;font-weight:600;border-radius:14px;padding:14px 18px;border:2px solid var(--ink);color:var(--ink);text-decoration:none;display:inline-block}
+button.lnk{font:inherit;background:none;border:none;color:var(--blue);text-decoration:underline;padding:8px 0;cursor:pointer;font-weight:600}
+button.main{background:#1F4590;border-color:#1F4590;color:#fff}
+.home{color:var(--blue);font-weight:600;text-decoration:none}
+
+.f1,.f2,.f3,.f4,.f5{opacity:0}
+.f1{animation:f1 8s infinite}.f2{animation:f2 8s infinite}.f3{animation:f3 8s infinite}.f4{animation:f4 8s infinite}.f5{animation:f5 8s infinite}
+@keyframes f1{0%{opacity:0}4%,92%{opacity:1}97%,100%{opacity:0}}
+@keyframes f2{0%,12%{opacity:0}16%,92%{opacity:1}97%,100%{opacity:0}}
+@keyframes f3{0%,26%{opacity:0}30%,92%{opacity:1}97%,100%{opacity:0}}
+@keyframes f4{0%,40%{opacity:0}44%,92%{opacity:1}97%,100%{opacity:0}}
+@keyframes f5{0%,54%{opacity:0}58%,92%{opacity:1}97%,100%{opacity:0}}
+.out{animation:oL 8s infinite}
+@keyframes oL{0%,26%{opacity:1}30%,92%{opacity:0}97%,100%{opacity:1}}
+.in{opacity:0;animation:iL 8s infinite}
+@keyframes iL{0%,26%{opacity:0}30%,92%{opacity:1}97%,100%{opacity:0}}
+.ill .rx{opacity:0;animation:xL 8s infinite}
+@keyframes xL{0%,26%{opacity:0}30%,92%{opacity:1}97%,100%{opacity:0}}
+.tint1 .bk{animation:none;fill:#f2a79d}
+.tint2 .bk{animation:t2 8s infinite}
+.tint3 .bk{animation:t3 8s infinite}
+@keyframes t2{0%,40%{fill:#F7F5EE}44%,92%{fill:#f2a79d}97%,100%{fill:#F7F5EE}}
+@keyframes t3{0%,52%{fill:#F7F5EE}56%,92%{fill:#f2a79d}97%,100%{fill:#F7F5EE}}
+.slide{animation:sL 5s infinite}
+@keyframes sL{0%{opacity:0;transform:translateX(40px)}15%,85%{opacity:1;transform:none}95%,100%{opacity:0;transform:translateX(40px)}}
+button.main{background:#F5D13D;border-color:#F5D13D;color:#122F5A;font-weight:800}
+@media (prefers-reduced-motion:reduce){.f1,.f2,.f3,.f4,.f5,.in,.ill .rx,.slide{animation:none;opacity:1;transform:none}.out{display:none}.tint2 .bk,.tint3 .bk{animation:none;fill:#f2a79d}}
 </style>
 </head>
 <body>
@@ -83,17 +123,17 @@ function bk(x,L,cls,st){var t=L.map(function(s,i){return '<text class="bt" x="'+
 function lk(x){return '<path class="l" d="M'+x+' 61h18m-6 -5l6 5l-6 5"/>'}
 var A=[["Infos","Empreinte A"],["Infos","Réf. : A","Empreinte B"],["Infos","Réf. : B"]];
 var SVG={
-tontine:sv("Des membres d’une tontine autour d’un carnet, l’un affirme avoir payé",'<rect class="a" x="8" y="2" width="136" height="22" rx="8"/><text class="s" x="76" y="17" text-anchor="middle">J’ai déjà cotisé !</text>'+pp(60,44)+pp(160,44)+pp(260,44)+'<text class="t" x="296" y="48" style="font-size:24px">?</text>'+nb(125,98,70,40)+'<text class="s" x="160" y="154" text-anchor="middle">Qui a raison ?</text>'),
-gardien:sv("Un seul gardien tient le carnet, les autres lui font confiance",pp(150,24)+nb(184,36,50,36)+pp(50,96).replace(/y="/g,'y="')+pp(125,96)+pp(200,96)+pp(272,96)+'<path class="l" style="stroke-width:2" d="M58 92L140 62M128 92L150 66M198 92L160 66M268 92L170 64"/><text class="t" x="160" y="154" text-anchor="middle">Un seul carnet, un seul gardien</text>'),
-copies:sv("Chaque membre garde sa propre copie du carnet",pp(50,24)+pp(125,24)+pp(200,24)+pp(275,24)+nb(32,76,36,28)+nb(107,76,36,28)+nb(182,76,36,28)+nb(257,76,36,28)+'<path class="l" style="stroke-dasharray:4 5;stroke-width:2" d="M72 90h30M147 90h30M222 90h30"/><text class="t" x="160" y="140" text-anchor="middle">Chacun garde une copie</text>'),
-chaine:sv("Trois blocs reliés : chaque bloc contient une référence au précédent",bk(10,A[0],'fi','animation-delay:.2s')+lk(98)+bk(116,A[1],'fi','animation-delay:.9s')+lk(204)+bk(222,A[2],'fi','animation-delay:1.6s')+'<text class="t" x="160" y="132" text-anchor="middle">Chaque bloc dépend du précédent</text>'),
+tontine:sv("Des membres d’une tontine autour d’un carnet, l’un affirme avoir payé",'<g class="f1"><rect class="a" x="8" y="2" width="136" height="22" rx="8"/><text class="s" x="76" y="17" text-anchor="middle">J’ai déjà cotisé !</text></g>'+pp(60,44)+pp(160,44)+pp(260,44)+'<g class="f2"><text class="t" x="296" y="48" style="font-size:24px">?</text></g>'+nb(125,98,70,40)+'<g class="f3"><text class="s" x="160" y="154" text-anchor="middle">Qui a raison ?</text></g>'),
+gardien:sv("Un seul gardien tient le carnet, les autres lui font confiance",pp(150,24)+nb(184,36,50,36)+pp(50,96)+pp(125,96)+pp(200,96)+pp(272,96)+'<path class="l f1" style="stroke-width:2" d="M58 92L140 62"/><path class="l f2" style="stroke-width:2" d="M128 92L150 66"/><path class="l f3" style="stroke-width:2" d="M198 92L160 66"/><path class="l f4" style="stroke-width:2" d="M268 92L170 64"/><g class="f5"><text class="t" x="160" y="154" text-anchor="middle">Un seul carnet, un seul gardien</text></g>'),
+copies:sv("Chaque membre garde sa propre copie du carnet",pp(50,24)+pp(125,24)+pp(200,24)+pp(275,24)+nb(32,76,36,28)+nb(107,76,36,28)+nb(182,76,36,28)+nb(257,76,36,28)+'<path class="l" style="stroke-dasharray:4 5;stroke-width:2" d="M72 90h30M147 90h30M222 90h30"/><circle class="y f1" cx="62" cy="80" r="5"/><circle class="y f2" cx="137" cy="80" r="5"/><circle class="y f3" cx="212" cy="80" r="5"/><circle class="y f4" cx="287" cy="80" r="5"/><text class="t" x="160" y="140" text-anchor="middle">Chacun garde une copie</text>'),
+chaine:sv("Trois blocs reliés : chaque bloc contient une référence au précédent",bk(10,A[0],'f1','')+lk(98)+bk(116,A[1],'f2','')+lk(204)+bk(222,A[2],'f3','')+'<text class="t" x="160" y="132" text-anchor="middle">Chaque bloc dépend du précédent</text>'),
 triche:sv("Quand un ancien bloc est modifié, les liens avec les blocs suivants ne correspondent plus",bk(10,A[0],'out')+bk(10,["Infos modifiées","Empreinte A’"],'in tint1')+lk(98)+'<text class="rx" x="107" y="54" text-anchor="middle">✕</text>'+bk(116,A[1],'tint2')+lk(204)+bk(222,A[2],'tint3')+'<text class="t" x="160" y="132" text-anchor="middle">Le lien est rompu</text>'),
-arbre:sv("Un arbre : la blockchain est le tronc, ses usages sont les branches : cryptomonnaies, paiements, certificats, traçabilité, DAO",'<path class="l" d="M160 100L60 18M160 100L160 18M160 100L260 18M160 100L110 62M160 100L210 62"/><ellipse class="y" cx="60" cy="18" rx="46" ry="15"/><text class="bt" x="60" y="22" text-anchor="middle" style="font-size:10px">Cryptomonnaies</text><ellipse class="bk" cx="160" cy="18" rx="46" ry="15"/><text class="bt" x="160" y="22" text-anchor="middle" style="font-size:10px">Paiements</text><ellipse class="y" cx="260" cy="18" rx="46" ry="15"/><text class="bt" x="260" y="22" text-anchor="middle" style="font-size:10px">Certificats</text><ellipse class="bk" cx="110" cy="62" rx="46" ry="15"/><text class="bt" x="110" y="66" text-anchor="middle" style="font-size:10px">Traçabilité</text><ellipse class="y" cx="210" cy="62" rx="46" ry="15"/><text class="bt" x="210" y="66" text-anchor="middle" style="font-size:10px">DAO</text><rect class="b" x="95" y="100" width="130" height="34" rx="8"/><text x="160" y="122" text-anchor="middle" style="fill:#fff;font-weight:800;font-size:15px">Blockchain</text><text class="s" x="160" y="153" text-anchor="middle">Chaque branche est un usage possible</text>'),
-cercles:sv("Deux cercles : la blockchain, une technologie, et le Web3, une vision d’Internet",'<circle cx="118" cy="72" r="55" style="fill:#F5D13D;fill-opacity:.45;stroke:var(--ink);stroke-width:3"/><circle cx="202" cy="72" r="55" style="fill:#1F4590;fill-opacity:.4;stroke:var(--ink);stroke-width:3"/><text class="t" x="88" y="70" text-anchor="middle" style="font-size:14px">Blockchain</text><text class="s" x="88" y="85" text-anchor="middle">une technologie</text><text class="t" x="236" y="70" text-anchor="middle" style="font-size:14px">Web3</text><text class="s" x="236" y="85" text-anchor="middle">une vision d’Internet</text><circle class="y" cx="160" cy="72" r="5"/><path class="l" style="stroke-width:2" d="M160 80V138"/><text class="s" x="160" y="153" text-anchor="middle">Zone commune : applications décentralisées</text>'),
-fil:sv("Le fil rouge : un registre, partagé, en chaîne",'<g class="fi" style="animation-delay:.2s"><rect class="y" x="8" y="48" width="86" height="46" rx="10"/><text class="bt" x="51" y="76" text-anchor="middle">Un registre</text></g><path class="l fi" style="animation-delay:.7s" d="M96 71h18m-6 -5l6 5l-6 5"/><g class="fi" style="animation-delay:1.1s"><rect class="bk" x="116" y="48" width="86" height="46" rx="10"/><text class="bt" x="159" y="76" text-anchor="middle">partagé</text></g><path class="l fi" style="animation-delay:1.6s" d="M204 71h18m-6 -5l6 5l-6 5"/><g class="fi" style="animation-delay:2s"><rect class="b" x="224" y="48" width="86" height="46" rx="10"/><text x="267" y="76" text-anchor="middle" style="fill:#fff;font-weight:600;font-size:12px">en chaîne</text></g><text class="t" x="160" y="132" text-anchor="middle">La blockchain en trois idées</text>')
+arbre:sv("Un arbre : la blockchain est le tronc, ses usages sont les branches : cryptomonnaies, paiements, certificats, traçabilité, DAO",'<path class="l" d="M160 100L60 18M160 100L160 18M160 100L260 18M160 100L110 62M160 100L210 62"/><rect class="b" x="95" y="100" width="130" height="34" rx="8"/><text x="160" y="122" text-anchor="middle" style="fill:#fff;font-weight:800;font-size:15px">Blockchain</text><g class="f1"><ellipse class="y" cx="60" cy="18" rx="46" ry="15"/><text class="bt" x="60" y="22" text-anchor="middle" style="font-size:10px">Cryptomonnaies</text></g><g class="f2"><ellipse class="bk" cx="160" cy="18" rx="46" ry="15"/><text class="bt" x="160" y="22" text-anchor="middle" style="font-size:10px">Paiements</text></g><g class="f3"><ellipse class="y" cx="260" cy="18" rx="46" ry="15"/><text class="bt" x="260" y="22" text-anchor="middle" style="font-size:10px">Certificats</text></g><g class="f4"><ellipse class="bk" cx="110" cy="62" rx="46" ry="15"/><text class="bt" x="110" y="66" text-anchor="middle" style="font-size:10px">Traçabilité</text></g><g class="f5"><ellipse class="y" cx="210" cy="62" rx="46" ry="15"/><text class="bt" x="210" y="66" text-anchor="middle" style="font-size:10px">DAO</text></g><text class="s" x="160" y="153" text-anchor="middle">Chaque branche est un usage possible</text>'),
+cercles:sv("Deux cercles : la blockchain, une technologie, et le Web3, une vision d’Internet",'<g class="f1"><circle cx="118" cy="72" r="55" style="fill:#F5D13D;fill-opacity:.45;stroke:var(--ink);stroke-width:3"/><text class="t" x="88" y="70" text-anchor="middle" style="font-size:14px">Blockchain</text><text class="s" x="88" y="85" text-anchor="middle">une technologie</text></g><g class="f2"><circle cx="202" cy="72" r="55" style="fill:#1F4590;fill-opacity:.4;stroke:var(--ink);stroke-width:3"/><text class="t" x="236" y="70" text-anchor="middle" style="font-size:14px">Web3</text><text class="s" x="236" y="85" text-anchor="middle">une vision d’Internet</text></g><g class="f3"><circle class="y" cx="160" cy="72" r="5"/><path class="l" style="stroke-width:2" d="M160 80V138"/><text class="s" x="160" y="153" text-anchor="middle">Zone commune : applications décentralisées</text></g>'),
+fil:sv("Le fil rouge : un registre, partagé, en chaîne",'<g class="f1"><rect class="y" x="8" y="48" width="86" height="46" rx="10"/><text class="bt" x="51" y="76" text-anchor="middle">Un registre</text></g><path class="l f2" d="M96 71h18m-6 -5l6 5l-6 5"/><g class="f3"><rect class="bk" x="116" y="48" width="86" height="46" rx="10"/><text class="bt" x="159" y="76" text-anchor="middle">partagé</text></g><path class="l f4" d="M204 71h18m-6 -5l6 5l-6 5"/><g class="f5"><rect class="b" x="224" y="48" width="86" height="46" rx="10"/><text x="267" y="76" text-anchor="middle" style="fill:#fff;font-weight:600;font-size:12px">en chaîne</text></g><text class="t" x="160" y="132" text-anchor="middle">La blockchain en trois idées</text>')
 };
 var screens=[
-{stage:0,t:"Ce que tu vas apprendre dans ce module",b:[["p","Dans le module 1, tu as vu que le Web3 cherche à donner davantage de contrôle aux utilisateurs. Mais comment est-ce possible techniquement ? Une technologie joue un rôle important : la blockchain."],["p","Ce module t’explique son principe, sans jargon et avec un exemple simple : une tontine. À la fin, tu seras capable de :"],["ul",["expliquer avec tes propres mots ce qu’est une blockchain ;","comprendre pourquoi on parle de « chaîne de blocs » ;","savoir pourquoi il est difficile de modifier l’historique d’une blockchain ;","faire la différence entre blockchain, cryptomonnaie et Web3."]],["p","Pas besoin de connaissances techniques ni de savoir programmer. Compte environ 7 minutes : des écrans courts, puis un quiz de 4 questions."],["p","Ici, l’objectif est de comprendre l’idée, pas de devenir expert."]],r:"Avant de parler de blockchain, comprenons pourquoi on a besoin de garder une trace."},
+{stage:0,t:"Ce que tu vas apprendre dans ce module",b:[["svg","intro2"],["p","Dans le Module 1, tu as vu que le Web3 cherche à donner plus de contrôle aux utilisateurs. Ici, tu découvres la technologie qui le rend possible : la blockchain."],["p","Tu vas voir, dans l’ordre :"],["ol",["À quoi sert un registre.","Pourquoi une blockchain est un registre partagé.","Comment les blocs forment une chaîne.","Pourquoi il est difficile de tricher.","La différence avec la cryptomonnaie et le Web3."]]],r:"Avant de parler de blockchain, comprenons pourquoi on a besoin de garder une trace."},
 {stage:1,t:"Pourquoi garder une trace ?",b:[["svg","tontine"],["p","Imagine une tontine dans laquelle plusieurs personnes cotisent chaque semaine. Chaque fois qu’un membre verse sa cotisation, la personne responsable note son nom, le montant versé et la date dans un carnet."],["p","Mais un jour, un membre affirme avoir déjà payé alors que le responsable ne retrouve aucune trace de son versement."],["p","Qui a raison ? Sans preuve écrite, il devient difficile de vérifier ce qui s’est réellement passé."],["p","C’est pour éviter ce genre de désaccord qu’on utilise des registres : des cahiers ou des documents qui permettent de garder une trace des opérations."]],r:"Un registre sert à conserver les informations importantes pour pouvoir les vérifier plus tard."},
 {stage:1,t:"Le problème d’un seul gardien",b:[["svg","gardien"],["p","Reprenons notre tontine. Imaginons qu’une seule personne garde le carnet de cotisations. Tous les membres doivent lui faire confiance pour noter correctement les versements et conserver les informations."],["p","C’est pratique, mais tout repose sur cette personne. Elle peut se tromper, perdre le carnet ou même être accusée d’avoir modifié certaines informations."],["p","Ce fonctionnement existe aussi ailleurs. Une banque conserve les opérations de ses clients. Une administration garde les informations relatives aux documents officiels. Dans chaque cas, les utilisateurs dépendent d’un organisme chargé de gérer et de protéger les informations."]],r:"Lorsqu’un seul acteur contrôle le registre, il faut lui faire confiance pour bien faire son travail."},
 {stage:2,t:"Et si tout le monde avait une copie ?",b:[["svg","copies"],["p","Et si, au lieu d’un seul carnet, chaque membre de la tontine gardait une copie ? Chaque fois qu’une cotisation est versée, tout le monde met à jour sa copie."],["p","Si quelqu’un tentait de changer ses chiffres en cachette, les autres copies le contrediraient."],["p","C’est le principe d’une blockchain : un registre numérique partagé, dont des copies sont conservées par de nombreux participants, qui suivent des règles communes."],["kw","Nœud","un ordinateur qui conserve une copie du registre et participe au réseau."]],r:"Une blockchain est un registre partagé entre de nombreux participants."},
@@ -111,19 +151,21 @@ var quiz=[
 ];
 var step=0,qi=0,score=0,app=document.getElementById("app");
 function rail(s){var l=["Un registre","Partagé","En chaîne"];return '<div class="rail">'+l.map(function(x,i){return '<span class="'+(s>i?'on':'')+'">'+x+'</span>'}).join("")+'</div>'}
+SVG.intro2=sv("Cinq étapes pour comprendre la blockchain",'<path class="l" d="M40 60H280"/><g class="f1"><circle class="bk" cx="40" cy="60" r="17"/><text class="bt" x="40" y="65" text-anchor="middle" style="font-size:14px">1</text><text class="s" x="40" y="102" text-anchor="middle" style="font-size:10px">Registre</text></g><g class="f2"><circle class="bk" cx="100" cy="60" r="17"/><text class="bt" x="100" y="65" text-anchor="middle" style="font-size:14px">2</text><text class="s" x="100" y="102" text-anchor="middle" style="font-size:10px">Partagé</text></g><g class="f3"><circle class="bk" cx="160" cy="60" r="17"/><text class="bt" x="160" y="65" text-anchor="middle" style="font-size:14px">3</text><text class="s" x="160" y="102" text-anchor="middle" style="font-size:10px">Blocs</text></g><g class="f4"><circle class="bk" cx="220" cy="60" r="17"/><text class="bt" x="220" y="65" text-anchor="middle" style="font-size:14px">4</text><text class="s" x="220" y="102" text-anchor="middle" style="font-size:10px">Tricher ?</text></g><g class="f5"><circle class="y" cx="280" cy="60" r="17"/><text class="bt" x="280" y="65" text-anchor="middle" style="font-size:14px">5</text><text class="s" x="280" y="102" text-anchor="middle" style="font-size:10px">Crypto</text></g>');
 function blk(x){var k=x[0];
  if(k=="svg")return '<div class="ill">'+SVG[x[1]]+'</div>';
  if(k=="p")return '<p>'+x[1]+'</p>';
  if(k=="q")return '<p class="analogie"><b>Analogie.</b> '+x[1]+'</p>';
+ if(k=="ol")return '<ol>'+x[1].map(function(i){return '<li>'+i+'</li>'}).join("")+'</ol>';
  if(k=="ul")return '<ul>'+x[1].map(function(i){return '<li>'+i+'</li>'}).join("")+'</ul>';
  if(k=="kw")return '<p class="kw"><b>Mot clé : '+x[1]+'.</b> C’est '+x[2]+'</p>';
  return ''}
 function lesson(){
- var s=screens[step],h='<p class="brand"><a class="home" href="index.html" aria-label="Retour à l’accueil">←</a> <a class="home" href="./">← Accueil</a> · Module 2</p>'+rail(s.stage)+'<p class="count">'+(step+1)+' sur '+screens.length+'</p>';
+ var s=screens[step],h='<p class="brand"><a class="home" href="index.html" aria-label="Retour à l’accueil">←</a> Blockchain RD Congo · Module 2</p>'+rail(s.stage)+'<p class="count">'+(step+1)+' sur '+screens.length+'</p>';
  h+='<h2>'+s.t+'</h2>';
  s.b.forEach(function(x){h+=blk(x)});
  h+='<div class="retenir"><small>À retenir</small>'+s.r+'</div>';
- h+='<div class="nav">'+(step>0?'<button onclick="go(-1)">Retour</button>':'')+'<button class="main" onclick="go(1)">'+(step==screens.length-1?'Commencer le quiz':'Suivant')+'</button></div>';
+ h+='<div class="nav">'+(step>0?'<button onclick="go(-1)">Retour</button>':'<a class="btn" href="index.html">Accueil</a>')+'<button class="main" onclick="go(1)">'+(step==screens.length-1?'Commencer le quiz':'Suivant')+'</button></div>';
  app.innerHTML=h;window.scrollTo(0,0)}
 function go(d){if(step+d>=screens.length){qi=0;score=0;ask();return}step+=d;lesson()}
 function ask(){
@@ -136,10 +178,9 @@ function pick(i){
  if(i==q.c)score++;
  document.getElementById("fb").innerHTML='<p class="expl"><b>'+(i==q.c?'Bonne réponse.':'Pas tout à fait.')+'</b> '+q.e+'</p><div class="nav"><button class="main" onclick="nextQ()">'+(qi==quiz.length-1?'Voir mon résultat':'Question suivante')+'</button></div>'}
 function nextQ(){qi++;if(qi>=quiz.length){end();return}ask()}
-function end(){try{var P=JSON.parse(localStorage.getItem("brdc_v1_progress")||"{}");P["m2"]={done:true,score:score,total:quiz.length};localStorage.setItem("brdc_v1_progress",JSON.stringify(P))}catch(e){}try{localStorage.setItem("brdc_m2",JSON.stringify({s:score,t:quiz.length}))}catch(e){}
+function end(){try{var P=JSON.parse(localStorage.getItem("brdc_v1_progress")||"{}");P["m2"]={done:true,score:score,total:quiz.length};localStorage.setItem("brdc_v1_progress",JSON.stringify(P))}catch(e){}
  var n=quiz.length,m=score==n?"Excellent ! Tu as compris les idées essentielles de la blockchain.":score>=n-1?"Bien joué ! Tu es sur la bonne voie. Tu peux revoir les notions qui te semblent encore floues.":"Pas de souci ! Reprends tranquillement le module. L’objectif est de comprendre, pas d’aller vite.";
- app.innerHTML='<p class="brand"><a class="home" href="index.html" aria-label="Retour à l’accueil">←</a> <a class="home" href="./">← Accueil</a> · Module 2</p><h2>Ton résultat</h2><p class="score">'+score+' sur '+n+'</p><p>'+m+'</p><p><a class="home" href="index.html">Retour à l’accueil</a></p><div class="nav"><button onclick="step=0;lesson()">Revoir la leçon</button><button onclick="goHome()">Accueil</button><button class="main" onclick="qi=0;score=0;ask()">Refaire le quiz</button></div>'}
-function goHome(){location.href="./"}
+ app.innerHTML='<p class="brand"><a class="home" href="index.html" aria-label="Retour à l’accueil">←</a> Blockchain RD Congo · Module 2</p><h2>Ton résultat</h2><p class="score">'+score+' sur '+n+'</p><p>'+m+'</p><div class="nav"><a class="btn" href="index.html">Accueil</a><button class="main" onclick="qi=0;score=0;ask()">Refaire le quiz</button></div><p><button class="lnk" onclick="step=0;lesson()">Revoir la leçon</button></p>'}
 lesson();
 </script>
 </body>
