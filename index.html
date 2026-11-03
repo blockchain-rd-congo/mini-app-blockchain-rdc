@@ -3,116 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Module 1 · Web1, Web2, Web3</title>
+<title>Blockchain RD Congo · Apprendre</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap">
 <style>
-:root{--bg:#F7F5EE;--ink:#122F5A;--soft:#4a5f80;--card:#fff;--line:#d9d6c9;--blue:#1F4590;--yellow:#F5D13D;--ok:#1d7a4d;--bad:#b3392f;
+:root{--bg:#F7F5EE;--ink:#122F5A;--soft:#4a5f80;--card:#fff;--line:#d9d6c9;--blue:#1F4590;--yellow:#F5D13D;--ok:#1d7a4d;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C2040;--ink:#F7F5EE;--soft:#b6c3da;--card:#122F5A;--line:#2a4678;--blue:#7fa3e6;--ok:#6fd3a0;--bad:#ff8f84;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0C2040;--ink:#F7F5EE;--soft:#b6c3da;--card:#122F5A;--line:#2a4678;--blue:#7fa3e6;--ok:#6fd3a0;--bad:#ff8f84;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C2040;--ink:#F7F5EE;--soft:#b6c3da;--card:#122F5A;--line:#2a4678;--blue:#7fa3e6;--ok:#6fd3a0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C2040;--ink:#F7F5EE;--soft:#b6c3da;--card:#122F5A;--line:#2a4678;--blue:#7fa3e6;--ok:#6fd3a0;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.55}
-main{max-width:520px;margin:0 auto;padding:20px 20px 40px;min-height:100vh;display:flex;flex-direction:column}
-.brand{font-weight:600;font-size:15px;color:var(--soft);margin:0 0 14px}
-.rail{display:flex;gap:6px;margin-bottom:6px}
-.rail span{flex:1;text-align:center;padding:8px 4px;border-radius:999px;border:1.5px solid var(--line);color:var(--soft);font-weight:600;font-size:15px;transition:all .3s}
-.rail span.on{background:var(--yellow);border-color:var(--yellow);color:#122F5A}
-.count{font-size:14px;color:var(--soft);margin:0 0 22px;text-align:right}
-h1{font-size:30px;line-height:1.15;font-weight:800;margin:0 0 16px;letter-spacing:-.01em}
-h2{font-size:24px;line-height:1.2;font-weight:800;margin:0 0 14px}
-p{margin:0 0 14px;max-width:60ch}
-.analogie{border-left:5px solid var(--yellow);padding:4px 0 4px 14px;margin:18px 0;color:var(--ink)}
-.note{font-size:16px;color:var(--soft)}
-.retenir{margin-top:auto;background:var(--blue);color:#fff;border-radius:16px;padding:16px 18px;font-weight:600;font-size:19px}
-.retenir small{display:block;font-weight:400;font-size:14px;opacity:.85;margin-bottom:4px}
-:root[data-theme="dark"] .retenir,
-@media (prefers-color-scheme:dark){.retenir{background:var(--card);border:1.5px solid var(--yellow);color:var(--ink)}}
-table{width:100%;border-collapse:collapse;margin:6px 0 18px;font-size:16px}
-th,td{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left;vertical-align:top}
-th{font-weight:800}
-.nav{display:flex;gap:10px;margin-top:22px}
-button{font:inherit;font-weight:600;border-radius:14px;padding:14px 18px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
-button.main{background:var(--yellow);border-color:var(--yellow);color:#122F5A;flex:1}
-button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.opt{display:block;width:100%;text-align:left;margin:0 0 10px;background:var(--card);border-color:var(--line);font-weight:400}
-.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
-.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--card))}
-.expl{margin:6px 0 4px;font-size:16px}
-.score{font-size:56px;font-weight:800;margin:6px 0}
-.rail span{font-size:13px;line-height:1.2;padding:8px 2px}
-h1{font-size:26px}h2{font-size:23px}
-ul{padding-left:20px;margin:0 0 14px}li{margin-bottom:6px}
-.rep{font-size:15px;color:var(--soft);border:1px dashed var(--line);border-radius:12px;padding:10px 12px;margin:0 0 14px}
-.rep ul{margin:6px 0 0}
-.kw{background:var(--card);border:1.5px solid var(--yellow);border-radius:12px;padding:10px 12px;font-size:16px}
-.tw{overflow-x:auto}table{font-size:14px;min-width:420px}
-.retenir{margin-top:22px}
-.ill{margin:0 0 16px}.ill svg{width:100%;height:auto;max-height:190px;display:block}
-.ill .a{fill:var(--card);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
-.ill .y{fill:#F5D13D;stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
-.ill .b{fill:#1F4590;stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
-.ill .l{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round}
-.ill .t{font-weight:600;font-size:16px;fill:var(--ink)}
-.ill .s{font-weight:600;font-size:11px;fill:var(--ink)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.5}
+main{max-width:520px;margin:0 auto;padding:22px 20px 40px}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.top img{width:52px;height:52px;object-fit:contain}
+.brand{font-weight:800;font-size:19px;line-height:1.15;margin:0}
+.sig{font-size:14px;color:var(--soft);margin:2px 0 0}
+h1{font-size:28px;line-height:1.15;font-weight:800;margin:22px 0 10px;letter-spacing:-.01em}
+p{margin:0 0 14px}
+.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 4px}
+.bar i{display:block;height:100%;background:var(--yellow);width:0;transition:width .5s}
+.pg{font-size:15px;color:var(--soft);margin:0 0 20px}
+.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 12px}
+a.card:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.card b{display:block;font-size:19px}
+.card span{display:block;font-size:15px;color:var(--soft);margin-top:2px}
+.card.lock{opacity:.6}
+.card.done{border-color:var(--ok)}
+.st{display:inline-block;margin-top:8px;font-weight:600;font-size:15px;padding:4px 12px;border-radius:99px;background:var(--yellow);color:#122F5A}
+.card.done .st{background:transparent;border:1.5px solid var(--ok);color:var(--ok)}
+.card.lock .st{background:transparent;border:1.5px solid var(--line);color:var(--soft)}
+.note{font-size:14px;color:var(--soft);margin-top:22px}
+button.r{font:inherit;font-size:14px;background:none;border:none;color:var(--soft);text-decoration:underline;padding:6px 0;cursor:pointer}
 </style>
 </head>
 <body>
-<main id="app"></main>
+<main>
+<div class="top"><img src="logo.png" alt="Logo Blockchain RD Congo" onerror="this.remove()"><div><p class="brand">Blockchain RD Congo</p><p class="sig">Comprendre. Connecter. Construire. Innover.</p></div></div>
+<h1>Apprends la blockchain, pas à pas.</h1>
+<p>Des leçons courtes, des exemples simples et un quiz à la fin de chaque module. Avance à ton rythme.</p>
+<div class="bar"><i id="fill"></i></div>
+<p class="pg" id="pg"></p>
+<div id="list"></div>
+<p class="note">Pour l’instant, ta progression est enregistrée uniquement sur ton téléphone.</p>
+<button class="r" id="reset">Effacer ma progression (phase de test)</button>
+</main>
 <script>
-var screens=[
-{stage:0,t:"Internet a beaucoup changé. Mais contrôles-tu vraiment tout ce que tu y fais ?",b:[["p","Aujourd’hui, tu utilises probablement Facebook, TikTok, WhatsApp ou YouTube. Tu regardes des vidéos, publies des photos, échanges avec tes amis. Tu peux même avoir des milliers d’abonnés."],["p","Mais imagine : demain, une plateforme suspend ton compte. Tu ne peux plus accéder à ton profil, à tes publications ni à ta communauté sur cette plateforme."],["p","Tu peux contacter le service client, mais c’est la plateforme qui décide des conditions d’accès. Pourquoi ? Parce que ton compte fonctionne sur un service géré par une entreprise."],["p","Cela nous amène à une question : publier et construire quelque chose sur Internet, est-ce forcément en être propriétaire ? Pour y répondre, voyons comment Internet a évolué."]],r:"Utiliser un service ou publier du contenu sur Internet ne signifie pas forcément qu’on contrôle entièrement ce service."},
-{stage:1,t:"Web1 : au début, Internet servait principalement à lire",b:[["svg","journal"],["p","Revenons aux années 1990. C’est à cette période que le World Wide Web commence à se développer. Beaucoup de sites ressemblent alors à des journaux ou à des pages d’information."],["p","Tu ouvres un site, tu lis un article, tu regardes quelques images. La majorité des internautes sont des lecteurs. Publier soi-même du contenu demande généralement des connaissances techniques."],["q","Imagine le journal de ton quartier : tu peux l’acheter, lire les nouvelles, mais tu ne peux pas prendre un stylo et modifier les articles."],["p","Petite précision : les e-mails et les forums existaient déjà. Internet n’était donc pas uniquement fait pour lire, mais les sites à consulter dominaient cette première période."],["rep","Repères historiques",["1989 : Tim Berners-Lee présente sa première proposition pour le World Wide Web.","1990 : les premiers outils du Web sont développés.","1991 : le Web commence à être diffusé au-delà du CERN."]]],r:"Web1 = principalement lire et consulter."},
-{stage:2,t:"Web2 : maintenant, tout le monde peut participer !",b:[["svg","marche"],["p","Avec l’évolution d’Internet, une grande transformation apparaît. Tu n’es plus seulement un lecteur : tu peux devenir créateur."],["ul",["Publier des photos sur Facebook.","Partager des vidéos sur TikTok.","Créer ta propre chaîne YouTube.","Discuter avec tes proches sur WhatsApp.","Vendre des produits sur Internet.","Construire une communauté autour de tes passions."]],["p","Mais il y a une particularité : une grande partie de ces activités se déroule sur des plateformes appartenant à des entreprises. Elles gèrent les comptes, les règles d’utilisation et une grande partie des données. Elles peuvent aussi suspendre un compte ou limiter sa visibilité."],["q","Imagine que tu installes un stand dans un grand marché. Tu vends, tu accueilles des clients, tu développes ton activité. Mais le marché appartient à quelqu’un d’autre, qui fixe les règles et gère les emplacements."],["rep","Repère historique",["L’expression « Web 2.0 » a été popularisée autour de 2004 pour décrire cet Internet plus participatif."]]],r:"Web2 = je lis, je publie et je participe, mais je dépends souvent des plateformes."},
-{stage:2,t:"Alors, quel est le problème ?",b:[["p","Prenons un exemple (histoire imaginaire). Grace est une jeune chanteuse de Kinshasa. Elle publie régulièrement ses chansons sur une plateforme vidéo. Petit à petit, elle gagne des abonnés et se fait connaître. Elle a consacré du temps à construire sa communauté."],["p","Un jour, son compte est suspendu. Elle ne peut plus accéder à sa chaîne, et son public ne retrouve plus facilement ses vidéos sur cette plateforme."],["p","Grace a construit une audience, mais elle ne possède pas la plateforme qui lui permet de la toucher. Son travail n’a pas disparu : ses chansons et ses contacts peuvent exister ailleurs. Mais elle a perdu son accès à cet espace et une partie de son lien avec son public."],["p","Cette situation soulève plusieurs questions :"],["ul",["Qui contrôle mon compte ?","Qui conserve les données liées à mon activité ?","Puis-je emporter mes abonnés et mes contenus si je change de plateforme ?","Est-il possible de contrôler directement certains de mes biens numériques ?"]],["p","Le Web2 a apporté énormément de possibilités. Mais cette dépendance a poussé certaines personnes à imaginer un autre modèle. C’est autour de ces questions que la vision du Web3 s’est développée."]],r:"Le Web2 a rendu Internet plus participatif, mais il nous rend aussi dépendants des plateformes que nous utilisons."},
-{stage:3,t:"Web3 : et si tu pouvais contrôler davantage ce que tu possèdes ?",b:[["svg","boutique"],["p","Le Web3 est une vision d’Internet qui cherche à donner davantage de contrôle aux utilisateurs sur certains éléments numériques. Il utilise notamment une technologie importante : la blockchain."],["kw","Blockchain","un registre numérique partagé, dont les informations enregistrées sont difficiles à modifier. On le découvre au Module 2."],["p","Grâce à elle et à certains services, il devient possible de détenir et de gérer directement des actifs numériques. Par exemple :"],["ul",["Des cryptomonnaies gérées avec ton portefeuille numérique.","Des objets numériques dont la propriété peut être vérifiée sur une blockchain.","Des applications qui fonctionnent grâce à des règles enregistrées dans des contrats intelligents.","Des organisations où les membres peuvent participer aux décisions."]],["kw","Contrat intelligent","un programme enregistré sur une blockchain, qui s’exécute selon des règles fixées d’avance."],["p","Reprenons le marché. Dans le Web2, Grace installe son stand dans un marché appartenant à une entreprise. Dans l’idée du Web3, elle peut utiliser des outils pour contrôler directement certains de ses biens numériques, sans dépendre systématiquement d’une seule plateforme."],["p","Par exemple, elle peut détenir des actifs numériques dans son propre portefeuille, appelé un wallet, qui les gère à l’aide de clés cryptographiques."],["kw","Wallet","un portefeuille numérique : il garde tes clés et te permet de gérer tes actifs numériques."],["rep","Repère historique",["Le terme Web3, au sens d’un Internet décentralisé, est associé à Gavin Wood, qui a formulé cette vision autour de 2014."]]],r:"Web3 = chercher à donner davantage de contrôle et de propriété aux utilisateurs sur certains éléments numériques."},
-{stage:3,t:"Le Web3 est-il parfait ? Pas du tout !",b:[["p","Le Web3 ne résout pas automatiquement tous les problèmes d’Internet. Il offre de nouvelles possibilités, mais présente aussi des limites :"],["ul",["Certains outils sont encore difficiles à utiliser.","Des projets manquent de fiabilité.","Les arnaques et les fausses promesses existent.","Si tu perds les clés de ton portefeuille et que tu n’as aucune sauvegarde, tu risques de perdre l’accès à tes actifs.","Certains services Web3 dépendent encore d’entreprises ou d’infrastructures centralisées."]],["p","Avoir davantage de contrôle signifie aussi avoir davantage de responsabilités. Et le Web3 ne veut pas dire que tu possèdes automatiquement tes données, ton audience ou tout ce que tu utilises en ligne."],["p","Il faut donc garder un esprit critique. Notre objectif n’est pas de te convaincre que le Web3 est parfait, mais de t’aider à comprendre son fonctionnement, ses possibilités et ses limites."]],r:"Le Web3 est une vision d’Internet, pas une garantie que tout sera automatiquement meilleur."},
-{stage:3,t:"Récapitulons !",tb:1,b:[["ul",["Web1 : je consulte et je lis.","Web2 : je participe, je crée et je partage.","Web3 : je cherche à avoir davantage de contrôle sur certains biens et usages numériques."]],["p","Attention : le Web3 ne remplace pas automatiquement le Web2. Les trois modèles et leurs usages peuvent coexister."],["p","Pour comprendre comment le Web3 fonctionne, il faut maintenant découvrir la technologie qui le rend possible dans de nombreuses applications : la blockchain."]],r:"Lire, participer, posséder davantage."}
+var mods=[
+{id:"m1",f:"module1.html",t:"Web1, Web2, Web3",d:"Comprendre l’évolution d’Internet"},
+{id:"m2",f:"module2.html",t:"Comprendre la blockchain",d:"Registre, blocs, et pourquoi ce n’est pas une cryptomonnaie"},
+{id:"m3",t:"Wallet et transaction",d:"Comment envoyer de la valeur"},
+{id:"m4",t:"Smart contract",d:"Des règles qui s’exécutent seules"},
+{id:"m5",t:"DAO",d:"Décider ensemble"},
+{id:"m6",t:"Cas d’usage en RDC et en Afrique",d:"Ce que la blockchain peut changer chez nous"}
 ];
-var quiz=[
-{q:"Dans le Web1, quelle était l’activité dominante des internautes ?",o:["Créer des applications blockchain.","Consulter des pages et lire des informations.","Acheter des cryptomonnaies.","Publier des vidéos sur TikTok."],c:1,e:"Au début du Web, beaucoup de sites servaient principalement à consulter des informations. La majorité des internautes étaient des lecteurs."},
-{q:"Grace développe une communauté sur TikTok, mais la plateforme suspend son compte. Quel problème cet exemple illustre-t-il ?",o:["Elle possède entièrement la plateforme.","Elle contrôle toutes les règles du service.","Elle dépend d’une plateforme qui fixe les règles d’accès à son compte.","Internet ne permet plus de publier."],c:2,e:"Dans le Web2, tu peux créer du contenu et développer une audience, mais tu restes dépendant des règles de la plateforme."},
-{q:"Quelle est l’une des ambitions du Web3 ?",o:["Supprimer complètement Internet.","Rendre tous les services gratuits.","Remplacer tous les réseaux sociaux.","Donner davantage de contrôle aux utilisateurs sur certains actifs numériques."],c:3,e:"Le Web3 cherche notamment à donner aux utilisateurs davantage de contrôle sur certains biens et usages numériques. C’est une ambition, pas une garantie."}
-];
-var step=0,qi=0,score=0,app=document.getElementById("app");
-function rail(s){var l=["Lire","Participer","Posséder davantage"];return '<div class="rail">'+l.map(function(x,i){return '<span class="'+(s>i?'on':'')+'">'+x+'</span>'}).join("")+'</div>'}
-var SVG={
-journal:'<svg viewBox="0 0 320 150" role="img" aria-label="Un journal de quartier : on le lit, on ne le modifie pas"><rect class="a" x="70" y="10" width="180" height="104" rx="8"/><rect class="y" x="84" y="22" width="152" height="22" rx="4"/><rect class="b" x="84" y="54" width="62" height="46" rx="4"/><path class="l" d="M160 58h76M160 72h76M160 86h56M84 108h90"/><text class="t" x="160" y="140" text-anchor="middle">Je lis</text></svg>',
-marche:'<svg viewBox="0 0 320 150" role="img" aria-label="Un stand dans un marché qui appartient à quelqu’un d’autre"><rect class="a" x="90" y="4" width="140" height="24" rx="5"/><text class="s" x="160" y="20" text-anchor="middle">Marché de l’entreprise</text><path class="y" d="M56 40h208l14 34H42z"/><path class="b" d="M96 40h36l-3 34H93zM176 40h36l9 34h-42z"/><path class="l" d="M60 74v36M260 74v36"/><rect class="a" x="52" y="96" width="216" height="14" rx="4"/><circle class="y" cx="120" cy="88" r="8"/><circle class="b" cx="146" cy="88" r="8"/><circle class="y" cx="200" cy="88" r="8"/><text class="t" x="160" y="140" text-anchor="middle">Je publie, mais chez eux</text></svg>',
-boutique:'<svg viewBox="0 0 320 150" role="img" aria-label="Ta propre boutique, avec la clé dans ta main"><path class="y" d="M50 46L120 10l70 36z"/><rect class="a" x="58" y="46" width="124" height="68"/><rect class="b" x="104" y="68" width="30" height="46" rx="3"/><rect class="b" x="70" y="62" width="22" height="20" rx="3"/><rect class="b" x="148" y="62" width="22" height="20" rx="3"/><circle class="y" cx="228" cy="80" r="15"/><path class="l" d="M243 80h50M277 80v12M289 80v10"/><text class="t" x="160" y="140" text-anchor="middle">Je garde la clé</text></svg>'
-};
-function blk(x){var k=x[0];
- if(k=="svg")return '<div class="ill">'+SVG[x[1]]+'</div>';
- if(k=="p")return '<p>'+x[1]+'</p>';
- if(k=="q")return '<p class="analogie"><b>Analogie.</b> '+x[1]+'</p>';
- if(k=="ul")return '<ul>'+x[1].map(function(i){return '<li>'+i+'</li>'}).join("")+'</ul>';
- if(k=="rep")return '<div class="rep"><b>'+x[1]+'</b><ul>'+x[2].map(function(i){return '<li>'+i+'</li>'}).join("")+'</ul></div>';
- if(k=="kw")return '<p class="kw"><b>Mot clé : '+x[1]+'.</b> C’est '+x[2]+'</p>';
- return ''}
-function lesson(){
- var s=screens[step],h='<p class="brand">Blockchain RD Congo · Module 1</p>'+rail(s.stage)+'<p class="count">'+(step+1)+' sur '+screens.length+'</p>';
- h+=(step==0?'<h1>':'<h2>')+s.t+(step==0?'</h1>':'</h2>');
- if(s.tb)h+='<div class="tw"><table><tr><th></th><th>Web1</th><th>Web2</th><th>Web3</th></tr><tr><td>Idée principale</td><td>Lire</td><td>Participer</td><td>Posséder davantage</td></tr><tr><td>Ton rôle</td><td>Consulter des pages</td><td>Créer et partager</td><td>Contrôler certains actifs numériques</td></tr><tr><td>Exemple</td><td>Site d’information</td><td>Facebook, TikTok</td><td>Wallet, applications blockchain</td></tr><tr><td>Enjeu principal</td><td>Accéder à l’information</td><td>Dépendance aux plateformes</td><td>Contrôle et responsabilité</td></tr></table></div>';
- s.b.forEach(function(x){h+=blk(x)});
- h+='<div class="retenir"><small>À retenir</small>'+s.r+'</div>';
- h+='<div class="nav">'+(step>0?'<button onclick="go(-1)">Retour</button>':'')+'<button class="main" onclick="go(1)">'+(step==screens.length-1?'Commencer le quiz':'Suivant')+'</button></div>';
- app.innerHTML=h;window.scrollTo(0,0)}
-function go(d){if(step+d>=screens.length){qi=0;score=0;ask();return}step+=d;lesson()}
-function ask(){
- var q=quiz[qi],h='<p class="brand">Blockchain RD Congo · Quiz du module 1</p><p class="count">Question '+(qi+1)+' sur '+quiz.length+'</p><h2>'+q.q+'</h2>';
- q.o.forEach(function(o,i){h+='<button class="opt" onclick="pick('+i+')"><b>'+"ABCD".charAt(i)+'.</b> '+o+'</button>'});
- h+='<div id="fb"></div>';app.innerHTML=h;window.scrollTo(0,0)}
-function pick(i){
- var q=quiz[qi];
- document.querySelectorAll(".opt").forEach(function(x,j){x.disabled=true;if(j==q.c)x.classList.add("good");else if(j==i)x.classList.add("wrong")});
- if(i==q.c)score++;
- document.getElementById("fb").innerHTML='<p class="expl"><b>'+(i==q.c?'Bonne réponse.':'Pas tout à fait.')+'</b> '+q.e+'</p><div class="nav"><button class="main" onclick="nextQ()">'+(qi==quiz.length-1?'Voir mon résultat':'Question suivante')+'</button></div>'}
-function nextQ(){qi++;if(qi>=quiz.length){end();return}ask()}
-function end(){
- var m=score==3?"Excellent ! Tu as compris les principales différences entre Web1, Web2 et Web3.":score==2?"Bien joué ! Tu es sur la bonne voie. Tu peux revoir les notions qui te semblent encore floues.":"Pas de souci ! Reprends tranquillement le module. L’objectif est de comprendre, pas d’aller vite.";
- app.innerHTML='<p class="brand">Blockchain RD Congo · Module 1</p><h2>Ton résultat</h2><p class="score">'+score+' sur '+quiz.length+'</p><p>'+m+'</p><div class="nav"><button onclick="step=0;lesson()">Revoir la leçon</button><button class="main" onclick="qi=0;score=0;ask()">Refaire le quiz</button></div>'}
-lesson();
+function load(){try{return JSON.parse(localStorage.getItem("brdc_v1_progress")||"{}")}catch(e){return {}}}
+function draw(){
+ var P=load(),n=0,h="";
+ mods.forEach(function(m,i){
+  var p=P[m.id],lab="Module "+(i+1);
+  if(!m.f){h+='<div class="card lock"><b>'+lab+' · '+m.t+'</b><span>'+m.d+'</span><span class="st">Bientôt disponible</span></div>';return}
+  if(p&&p.done){n++;h+='<a class="card done" href="'+m.f+'"><b>'+lab+' · '+m.t+'</b><span>'+m.d+'</span><span class="st">Terminé · quiz '+p.score+' sur '+p.total+'</span></a>'}
+  else h+='<a class="card" href="'+m.f+'"><b>'+lab+' · '+m.t+'</b><span>'+m.d+'</span><span class="st">Commencer</span></a>'});
+ document.getElementById("list").innerHTML=h;
+ document.getElementById("pg").textContent=n+" sur "+mods.length+" modules terminés";
+ document.getElementById("fill").style.width=Math.round(n/mods.length*100)+"%"}
+document.getElementById("reset").onclick=function(){if(confirm("Effacer ta progression sur cet appareil ?")){try{localStorage.removeItem("brdc_v1_progress")}catch(e){}draw()}};
+draw();
 </script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}}catch(e){}</script>
 </body>
 </html>
