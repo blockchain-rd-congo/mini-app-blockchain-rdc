@@ -77,9 +77,12 @@ nav{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px 12px calc(10px
 .av{width:72px;height:72px;border-radius:50%;background:#1F4590;color:#fff;display:grid;place-items:center;font-weight:800;font-size:28px;margin:0 auto 8px}
 .rank{display:inline-block;background:#F5D13D;color:#122F5A;font-weight:800;border-radius:99px;padding:4px 14px;font-size:15px;margin-top:4px}
 .tab{font-size:11px;padding:8px 0}
+button,a,.tab{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 </style>
 </head>
 <body>
+<div id="ver" style="position:fixed;top:2px;right:8px;font:600 10px system-ui,sans-serif;opacity:.55;color:#888;pointer-events:none;z-index:99">v0.9</div>
+<script>window.onerror=function(m,s,l){try{var d=document.createElement("div");d.textContent="Erreur : "+m+" (ligne "+l+")";d.style.cssText="position:fixed;left:8px;right:8px;top:calc(env(safe-area-inset-top,0px) + 14px);z-index:100;background:#b3392f;color:#fff;font:600 13px system-ui,sans-serif;padding:8px 10px;border-radius:10px";d.onclick=function(){d.remove()};document.body.appendChild(d)}catch(e){}};</script>
 <div id="intro" role="dialog" aria-label="Introduction"></div>
 <main id="view"></main>
 <nav><div class="tabs" id="tabs"></div></nav>
