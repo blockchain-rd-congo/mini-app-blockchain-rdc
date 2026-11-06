@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Blockchain RD Congo · Apprendre</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap">
 <style>
 :root{--bg:#F7F5EE;--ink:#122F5A;--soft:#4a5f80;--card:#fff;--line:#d9d6c9;--blue:#1F4590;--yellow:#F5D13D;--ok:#1d7a4d;
 box-sizing:border-box}
@@ -93,6 +91,7 @@ var SLIDES=[
 ];
 var si=0;
 /* >>> LIENS À REMPLIR : colle l’adresse complète entre les guillemets (ex. https://t.me/nom) <<< */
+var LOGO=false;
 var LINKS={channel:"https://t.me/+wEpwTEbjdBBkNDU0",group:"https://t.me/+d7B1GIDJ7BBmNmQ0",x:"https://x.com/blockchaincongo?s=11",facebook:"https://www.facebook.com/share/17ZX2oz1z7/?mibextid=wwXIfr",linkedin:"https://www.linkedin.com/company/blockchain-rd-congo/",whatsapp:"https://whatsapp.com/channel/0029VbDmuVLGZNClMhTOJV3k"};
 var mods=[
 {id:"m1",f:"module1.html",t:"Web1, Web2, Web3",d:"Comprendre l’évolution d’Internet",free:1},
@@ -111,7 +110,7 @@ function prog(){return jget("brdc_v1_progress")}
 function tasks(){return jget("brdc_v1_tasks")}
 function unlocked(){var t=tasks();return !!(t.channel&&t.group)}
 function openL(u){try{if(window.Telegram&&Telegram.WebApp&&Telegram.WebApp.initData){if(/^https?:\/\/t\.me\//.test(u)&&Telegram.WebApp.openTelegramLink)Telegram.WebApp.openTelegramLink(u);else Telegram.WebApp.openLink(u);return}}catch(e){}window.open(u,"_blank")}
-function head(){return '<div class="top"><img src="logo.png" alt="Logo Blockchain RD Congo" onerror="this.remove()"><div><p class="brand">Blockchain RD Congo</p><p class="sig">Comprendre. Connecter. Construire. Innover.</p></div></div>'}
+function head(){return '<div class="top">'+(LOGO?'<img src="logo.png" alt="Logo Blockchain RD Congo" onerror="this.remove()">':'')+'<div><p class="brand">Blockchain RD Congo</p><p class="sig">Comprendre. Connecter. Construire. Innover.</p></div></div>'}
 function tRow(id,t,d,done){return '<div class="task"><span class="chk'+(done?' ok':'')+'">'+(done?'✓':'')+'</span><div class="tt"><b>'+t+'</b><small>'+d+'</small><div class="ta"><button class="mini" data-open="'+id+'"'+(LINKS[id]?'':' disabled')+'>'+(LINKS[id]?'Ouvrir':'Lien bientôt')+'</button><button class="mini'+(done?'':' pri')+'" data-done="'+id+'">'+(done?'Fait ✓':'J’ai rejoint')+'</button></div></div></div>'}
 function cards(P){var n=0,h="",ok=unlocked();mods.forEach(function(m,i){var p=P[m.id],lab="Module "+(i+1),t='<b>'+lab+' · '+m.t+'</b><span>'+m.d+'</span>';
  if(!m.f){h+='<div class="card lock">'+t+'<span class="st">Bientôt disponible</span></div>';return}
@@ -141,9 +140,10 @@ profil:function(){var P=prog(),tk=tasks(),n=0,perfect=false,u=null;mods.forEach(
  '<div class="box"><h2>Parrainage</h2><p class="small">Bientôt : ton lien personnel pour inviter tes amis et monter en rang.</p></div>'+
  '<div class="box"><h2>Réglages</h2><button class="r" id="again">Revoir l’introduction</button><br><button class="r" id="reset">Effacer ma progression (phase de test)</button></div>'}
 };
-function show(t){if(!VIEWS[t])t="accueil";document.getElementById("view").innerHTML=VIEWS[t]();
+var cur="accueil";
+function show(t){if(!VIEWS[t])t="accueil";cur=t;document.getElementById("view").innerHTML=VIEWS[t]();
  document.getElementById("tabs").innerHTML=TABS.map(function(x){return '<button class="tab'+(x[0]==t?' on':'')+'" data-t="'+x[0]+'" aria-label="'+x[1]+'"><svg viewBox="0 0 24 24">'+x[2]+'</svg>'+x[1]+'</button>'}).join("");
- Array.prototype.forEach.call(document.querySelectorAll(".tab"),function(b){b.onclick=function(){location.hash=b.getAttribute("data-t")}});
+ Array.prototype.forEach.call(document.querySelectorAll(".tab"),function(b){b.onclick=function(){var k=b.getAttribute("data-t");try{history.replaceState(null,"","#"+k)}catch(e){}show(k)}});
  var v=document.getElementById("view");v.onclick=function(e){var el=e.target.closest("[data-open],[data-done],#again,#reset");if(!el)return;
   if(el.hasAttribute("data-open")){if(LINKS[el.getAttribute("data-open")])openL(LINKS[el.getAttribute("data-open")]);return}
   if(el.hasAttribute("data-done")){var k=el.getAttribute("data-done"),tk=tasks();tk[k]=!tk[k];ls("brdc_v1_tasks",JSON.stringify(tk));show(t);return}
@@ -162,7 +162,6 @@ function nxt(){clearTimeout(tm);if(si<SLIDES.length-1)intro(si+1);else done()}
 function done(){clearTimeout(tm);ls("brdc_v1_seen","1");document.getElementById("intro").className=""}
 route();if(!ls("brdc_v1_seen"))intro(0);
 </script>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script>try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}}catch(e){}</script>
+<script async src="https://telegram.org/js/telegram-web-app.js" onload="try{Telegram.WebApp.ready();Telegram.WebApp.expand();if(cur=='accueil'||cur=='profil')show(cur)}catch(e){}"></script>
 </body>
 </html>

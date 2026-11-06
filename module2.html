@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Module 2 · Comprendre la blockchain</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap">
 <style>
 :root{--bg:#F7F5EE;--ink:#122F5A;--soft:#4a5f80;--card:#fff;--line:#d9d6c9;--blue:#1F4590;--yellow:#F5D13D;--ok:#1d7a4d;--bad:#b3392f;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -116,6 +114,7 @@ button.main{background:#F5D13D;border-color:#F5D13D;color:#122F5A;font-weight:80
 <body>
 <main id="app"></main>
 <script>
+try{var TK=JSON.parse(localStorage.getItem("brdc_v1_tasks")||"{}");if(!(TK.channel&&TK.group))location.replace("index.html#accueil")}catch(e){}
 function pp(x,y){return '<circle class="y" cx="'+x+'" cy="'+y+'" r="9"/><path class="b" d="M'+(x-14)+' '+(y+32)+'a14 14 0 0 1 28 0z"/>'}
 function nb(x,y,w,h){return '<rect class="a" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="3"/><path class="l" style="stroke-width:2" d="M'+(x+6)+' '+(y+h*.3)+'h'+(w-12)+'M'+(x+6)+' '+(y+h*.65)+'h'+(w-12)+'"/>'}
 function sv(l,i){return '<svg viewBox="0 0 320 160" role="img" aria-label="'+l+'">'+i+'</svg>'}
@@ -161,7 +160,7 @@ function blk(x){var k=x[0];
  if(k=="kw")return '<p class="kw"><b>Mot clé : '+x[1]+'.</b> C’est '+x[2]+'</p>';
  return ''}
 function lesson(){
- var s=screens[step],h='<p class="brand"><a class="home" href="index.html" aria-label="Retour à l’accueil">←</a> Blockchain RD Congo · Module 2</p>'+rail(s.stage)+'<p class="count">'+(step+1)+' sur '+screens.length+'</p>';
+ var s=screens[step],h='<p class="brand"><a class="home" href="index.html#education" aria-label="Retour à l’accueil">←</a> Blockchain RD Congo · Module 2</p>'+rail(s.stage)+'<p class="count">'+(step+1)+' sur '+screens.length+'</p>';
  h+='<h2>'+s.t+'</h2>';
  s.b.forEach(function(x){h+=blk(x)});
  h+='<div class="retenir"><small>À retenir</small>'+s.r+'</div>';
@@ -169,7 +168,7 @@ function lesson(){
  app.innerHTML=h;window.scrollTo(0,0)}
 function go(d){if(step+d>=screens.length){qi=0;score=0;ask();return}step+=d;lesson()}
 function ask(){
- var q=quiz[qi],h='<p class="brand"><a class="home" href="index.html" aria-label="Retour à l’accueil">←</a> Blockchain RD Congo · Quiz du module 2</p><p class="count">Question '+(qi+1)+' sur '+quiz.length+'</p><h2>'+q.q+'</h2>';
+ var q=quiz[qi],h='<p class="brand"><a class="home" href="index.html#education" aria-label="Retour à l’accueil">←</a> Blockchain RD Congo · Quiz du module 2</p><p class="count">Question '+(qi+1)+' sur '+quiz.length+'</p><h2>'+q.q+'</h2>';
  q.o.forEach(function(o,i){h+='<button class="opt" onclick="pick('+i+')"><b>'+"ABCD".charAt(i)+'.</b> '+o+'</button>'});
  h+='<div id="fb"></div>';app.innerHTML=h;window.scrollTo(0,0)}
 function pick(i){
@@ -180,7 +179,7 @@ function pick(i){
 function nextQ(){qi++;if(qi>=quiz.length){end();return}ask()}
 function end(){try{var P=JSON.parse(localStorage.getItem("brdc_v1_progress")||"{}");P["m2"]={done:true,score:score,total:quiz.length};localStorage.setItem("brdc_v1_progress",JSON.stringify(P))}catch(e){}
  var n=quiz.length,m=score==n?"Excellent ! Tu as compris les idées essentielles de la blockchain.":score>=n-1?"Bien joué ! Tu es sur la bonne voie. Tu peux revoir les notions qui te semblent encore floues.":"Pas de souci ! Reprends tranquillement le module. L’objectif est de comprendre, pas d’aller vite.";
- app.innerHTML='<p class="brand"><a class="home" href="index.html" aria-label="Retour à l’accueil">←</a> Blockchain RD Congo · Module 2</p><h2>Ton résultat</h2><p class="score">'+score+' sur '+n+'</p><p>'+m+'</p><div class="nav"><a class="btn" href="index.html">Accueil</a><button class="main" onclick="qi=0;score=0;ask()">Refaire le quiz</button></div><p><button class="lnk" onclick="step=0;lesson()">Revoir la leçon</button></p>'}
+ app.innerHTML='<p class="brand"><a class="home" href="index.html#education" aria-label="Retour à l’accueil">←</a> Blockchain RD Congo · Module 2</p><h2>Ton résultat</h2><p class="score">'+score+' sur '+n+'</p><p>'+m+'</p><div class="nav"><a class="btn" href="index.html">Accueil</a><button class="main" onclick="qi=0;score=0;ask()">Refaire le quiz</button></div><p><button class="lnk" onclick="step=0;lesson()">Revoir la leçon</button></p>'}
 lesson();
 </script>
 </body>
