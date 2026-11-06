@@ -8,71 +8,159 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap">
 <style>
 :root{--bg:#F7F5EE;--ink:#122F5A;--soft:#4a5f80;--card:#fff;--line:#d9d6c9;--blue:#1F4590;--yellow:#F5D13D;--ok:#1d7a4d;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+box-sizing:border-box}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C2040;--ink:#F7F5EE;--soft:#b6c3da;--card:#122F5A;--line:#2a4678;--blue:#7fa3e6;--ok:#6fd3a0;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#0C2040;--ink:#F7F5EE;--soft:#b6c3da;--card:#122F5A;--line:#2a4678;--blue:#7fa3e6;--ok:#6fd3a0;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.5}
-main{max-width:520px;margin:0 auto;padding:22px 20px 40px}
+main{max-width:520px;margin:0 auto;padding:calc(22px + env(safe-area-inset-top,0px)) 20px 120px}
 .top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
 .top img{width:52px;height:52px;object-fit:contain}
 .brand{font-weight:800;font-size:19px;line-height:1.15;margin:0}
 .sig{font-size:14px;color:var(--soft);margin:2px 0 0}
 h1{font-size:28px;line-height:1.15;font-weight:800;margin:22px 0 10px;letter-spacing:-.01em}
+h2{font-size:20px;font-weight:800;margin:6px 0 12px}
 p{margin:0 0 14px}
 .bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 4px}
 .bar i{display:block;height:100%;background:var(--yellow);width:0;transition:width .5s}
 .pg{font-size:15px;color:var(--soft);margin:0 0 20px}
 .card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 12px}
-a.card:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+a.card:focus-visible,.tab:focus-visible,.cta:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .card b{display:block;font-size:19px}
 .card span{display:block;font-size:15px;color:var(--soft);margin-top:2px}
-.card.lock{opacity:.6}
-.card.done{border-color:var(--ok)}
-.st{display:inline-block;margin-top:8px;font-weight:600;font-size:15px;padding:4px 12px;border-radius:99px;background:#F5D13D;color:#122F5A;font-weight:800;font-size:16px;padding:8px 20px}
-h2{font-size:20px;font-weight:800;margin:6px 0 12px}
+.card.lock{opacity:.6}.card.done{border-color:var(--ok)}
+.card .st{text-align:center}
+.st{display:inline-block;margin-top:8px;font-weight:800;font-size:16px;padding:8px 20px;border-radius:99px;background:#F5D13D;color:#122F5A}
 .card.done .st{background:transparent;border:1.5px solid var(--ok);color:var(--ok)}
-.card.lock .st{background:transparent;border:1.5px solid var(--line);color:var(--soft)}
+.card.lock .st{background:transparent;border:1.5px solid var(--line);color:var(--soft);font-weight:600;font-size:15px;padding:4px 12px}
 .note{font-size:14px;color:var(--soft);margin-top:22px}
 button.r{font:inherit;font-size:14px;background:none;border:none;color:var(--soft);text-decoration:underline;padding:6px 0;cursor:pointer}
+.soon{text-align:center;padding:30px 10px}.soon .ic{width:84px;height:84px;margin:0 auto 14px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);display:grid;place-items:center}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px 12px calc(10px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center}
+.tabs{display:flex;gap:4px;width:100%;max-width:480px;background:var(--card);border:1.5px solid var(--line);border-radius:26px;padding:6px;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px;border:none;background:none;border-radius:20px;font:inherit;font-size:12px;font-weight:600;color:var(--soft);cursor:pointer}
+.tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tab.on{background:#F5D13D;color:#122F5A;font-weight:800}
+#intro{position:fixed;inset:0;z-index:50;background:#0C2040;color:#fff;display:none;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) 22px calc(22px + env(safe-area-inset-bottom,0px));overflow:hidden}
+#intro.show{display:flex}
+#intro:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1.4px),radial-gradient(#fff 1px,transparent 1.4px);background-size:90px 90px,140px 140px;background-position:10px 20px,60px 70px;opacity:.14}
+.segs{display:flex;gap:6px;position:relative}.segs div{flex:1;height:4px;border-radius:9px;background:rgba(255,255,255,.25);overflow:hidden}.segs i{display:block;height:100%;width:0;background:#fff}
+.segs .full i{width:100%}.segs .run i{animation:fillb 6s linear forwards}
+@keyframes fillb{to{width:100%}}
+.skip{align-self:flex-end;background:none;border:none;color:#b6c3da;font:inherit;font-size:15px;padding:12px 0;cursor:pointer;position:relative}
+.art{flex:1;display:grid;place-items:center;position:relative;min-height:0}.art svg{width:min(78vw,320px);height:auto;max-height:46vh}
+.cap{position:relative;font-size:26px;font-weight:800;line-height:1.2;margin:0 0 8px}.sub{position:relative;color:#b6c3da;font-size:17px;margin:0 0 20px}
+.cta{position:relative;font:inherit;font-weight:800;font-size:18px;border:none;border-radius:16px;padding:16px;background:#F5D13D;color:#122F5A;cursor:pointer}
+.starg{transform-origin:100px 100px;animation:grow 5s ease-in-out infinite}
+@keyframes grow{0%{transform:scale(.15) rotate(-25deg);opacity:0}28%{transform:scale(1.08) rotate(0);opacity:1}38%{transform:scale(.97)}48%,88%{transform:scale(1);opacity:1}100%{transform:scale(1);opacity:0}}
+.halo{transform-origin:100px 100px;animation:halo 5s ease-in-out infinite}
+@keyframes halo{0%,20%{opacity:0;transform:scale(.4)}45%{opacity:.16;transform:scale(1)}88%{opacity:.1;transform:scale(1.12)}100%{opacity:0}}
+.sp{animation:tw 2.5s ease-in-out infinite}.sp2{animation:tw 2.5s 1.1s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.1}50%{opacity:1}}
+.stem{stroke-dasharray:110;stroke-dashoffset:110;animation:stem 5s ease-out infinite}
+@keyframes stem{0%{stroke-dashoffset:110;opacity:1}32%,88%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.lf{transform:scale(0);animation:leaf 5s ease-out infinite;transform-origin:100px 92px}
+.lf2{animation-delay:.25s;transform-origin:100px 100px}
+@keyframes leaf{0%,28%{transform:scale(0);opacity:1}52%{transform:scale(1.08)}60%,88%{transform:scale(1);opacity:1}100%{transform:scale(1);opacity:0}}
+@media (prefers-reduced-motion:reduce){.starg,.halo,.sp,.sp2,.lf,.stem{animation:none}.lf{transform:none}.stem{stroke-dashoffset:0}.halo{opacity:.12}.segs .run i{animation:none;width:100%}}
+.task{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.task:first-of-type{border-top:none}
+.chk{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:14px;margin-top:2px}.chk.ok{background:#F5D13D;border-color:#F5D13D;color:#122F5A}
+.tt b{display:block;font-size:17px;line-height:1.25}.tt small{display:block;color:var(--soft);font-size:14px}.ta{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+.mini{font:inherit;font-size:14px;font-weight:600;border-radius:99px;padding:7px 14px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.mini.pri{background:#F5D13D;border-color:#F5D13D;color:#122F5A;font-weight:800}.mini:disabled{opacity:.5;cursor:default}
+.box{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 14px}.box h2{margin-top:0}.box.ok{border-color:var(--ok)}
+.small{font-size:15px;color:var(--soft)}.opt{font-size:12px;font-weight:600;color:var(--soft);border:1px solid var(--line);border-radius:99px;padding:2px 8px;vertical-align:middle}
+.soc{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid var(--line)}.soc:first-of-type{border-top:none}
+.cta2{display:block;text-align:center;text-decoration:none;font-weight:800;border-radius:14px;padding:13px;background:#F5D13D;color:#122F5A}
+.notice{border-left:5px solid #F5D13D;background:var(--card);border-radius:12px;padding:12px 14px;margin:6px 0 14px;font-size:16px}.lk{color:var(--blue);font-weight:600}
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.bd{text-align:center;font-size:13px;line-height:1.2}
+.bd i{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 6px;border-radius:50%;background:#F5D13D;font-style:normal;font-size:26px}.bd.off{opacity:.45}.bd.off i{background:var(--line);filter:grayscale(1)}
+.av{width:72px;height:72px;border-radius:50%;background:#1F4590;color:#fff;display:grid;place-items:center;font-weight:800;font-size:28px;margin:0 auto 8px}
+.rank{display:inline-block;background:#F5D13D;color:#122F5A;font-weight:800;border-radius:99px;padding:4px 14px;font-size:15px;margin-top:4px}
+.tab{font-size:11px;padding:8px 0}
 </style>
 </head>
 <body>
-<main>
-<div class="top"><img src="logo.png" alt="Logo Blockchain RD Congo" onerror="this.remove()"><div><p class="brand">Blockchain RD Congo</p><p class="sig">Comprendre. Connecter. Construire. Innover.</p></div></div>
-<h1>Apprends la blockchain, pas à pas.</h1>
-<p>Blockchain RD Congo est une initiative éducative et communautaire. Cet outil t’aide à comprendre la blockchain et le Web3 pas à pas, avec des exemples simples, pour pouvoir un jour explorer et construire avec cette technologie.</p>
-<div class="bar"><i id="fill"></i></div>
-<p class="pg" id="pg"></p>
-<h2>Les 6 modules du parcours</h2>
-<div id="list"></div>
-<p class="note">Pour l’instant, ta progression est enregistrée uniquement sur ton téléphone.</p>
-<button class="r" id="reset">Effacer ma progression (phase de test)</button>
-</main>
+<div id="intro" role="dialog" aria-label="Introduction"></div>
+<main id="view"></main>
+<nav><div class="tabs" id="tabs"></div></nav>
 <script>
+var STAR="M100.0 28.0L118.8 74.1L168.5 77.8L130.4 109.9L142.3 158.2L100.0 132.0L57.7 158.2L69.6 109.9L31.5 77.8L81.2 74.1Z";
+var SLIDES=[
+{cap:"Chaque grand savoir commence par une petite étincelle.",sub:"Bienvenue sur Blockchain RD Congo. Ici, la blockchain s’explique simplement.",art:'<svg viewBox="0 0 200 200" role="img" aria-label="Une étoile qui grandit"><circle class="halo" cx="100" cy="100" r="88" fill="#F5D13D"/><circle class="sp" cx="28" cy="40" r="3" fill="#fff"/><circle class="sp2" cx="176" cy="52" r="3" fill="#fff"/><circle class="sp" cx="168" cy="168" r="2.5" fill="#fff"/><circle class="sp2" cx="34" cy="160" r="2.5" fill="#fff"/><path class="starg" d="'+STAR+'" fill="#F5D13D" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg>'},
+{cap:"Apprends pas à pas, puis construis.",sub:"Des leçons courtes et des quiz pour avancer à ton rythme.",art:'<svg viewBox="0 0 200 200" role="img" aria-label="Une pousse qui grandit"><ellipse cx="100" cy="172" rx="46" ry="9" fill="#2a4678"/><path class="stem" d="M100 170C100 140 98 118 100 92" fill="none" stroke="#5cc26a" stroke-width="7" stroke-linecap="round"/><path class="lf" d="M100 104C66 106 50 84 50 62C78 60 100 76 100 104Z" fill="#4CAF50" stroke="#e8ffe9" stroke-width="3" stroke-linejoin="round"/><path class="lf lf2" d="M100 94C106 62 132 44 160 46C160 78 138 98 100 94Z" fill="#6fd47c" stroke="#e8ffe9" stroke-width="3" stroke-linejoin="round"/></svg>'}
+];
+var si=0;
+/* >>> LIENS À REMPLIR : colle l’adresse complète entre les guillemets (ex. https://t.me/nom) <<< */
+var LINKS={channel:"https://t.me/+wEpwTEbjdBBkNDU0",group:"https://t.me/+d7B1GIDJ7BBmNmQ0",x:"https://x.com/blockchaincongo?s=11",facebook:"https://www.facebook.com/share/17ZX2oz1z7/?mibextid=wwXIfr",linkedin:"https://www.linkedin.com/company/blockchain-rd-congo/",whatsapp:"https://whatsapp.com/channel/0029VbDmuVLGZNClMhTOJV3k"};
 var mods=[
-{id:"m1",f:"module1.html",t:"Web1, Web2, Web3",d:"Comprendre l’évolution d’Internet"},
+{id:"m1",f:"module1.html",t:"Web1, Web2, Web3",d:"Comprendre l’évolution d’Internet",free:1},
 {id:"m2",f:"module2.html",t:"Comprendre la blockchain",d:"Registre, blocs, et pourquoi ce n’est pas une cryptomonnaie"},
 {id:"m3",t:"Wallet et transaction",d:"Comment envoyer de la valeur"},
 {id:"m4",t:"Smart contract",d:"Des règles qui s’exécutent seules"},
 {id:"m5",t:"DAO",d:"Décider ensemble"},
 {id:"m6",t:"Cas d’usage en RDC et en Afrique",d:"Ce que la blockchain peut changer chez nous"}
 ];
-function load(){try{return JSON.parse(localStorage.getItem("brdc_v1_progress")||"{}")}catch(e){return {}}}
-function draw(){
- var P=load(),n=0,h="";
- mods.forEach(function(m,i){
-  var p=P[m.id],lab="Module "+(i+1);
-  if(!m.f){h+='<div class="card lock"><b>'+lab+' · '+m.t+'</b><span>'+m.d+'</span><span class="st">Bientôt disponible</span></div>';return}
-  if(p&&p.done){n++;h+='<a class="card done" href="'+m.f+'"><b>'+lab+' · '+m.t+'</b><span>'+m.d+'</span><span class="st">Terminé · quiz '+p.score+' sur '+p.total+'</span></a>'}
-  else h+='<a class="card" href="'+m.f+'"><b>'+lab+' · '+m.t+'</b><span>'+m.d+'</span><span class="st">Commencer</span></a>'});
- document.getElementById("list").innerHTML=h;
- document.getElementById("pg").textContent=n+" sur "+mods.length+" modules terminés";
- document.getElementById("fill").style.width=Math.round(n/mods.length*100)+"%"}
-function wipe(){try{localStorage.removeItem("brdc_v1_progress")}catch(e){}draw()}
-document.getElementById("reset").onclick=function(){var q="Effacer ta progression sur cet appareil ?";try{if(window.Telegram&&Telegram.WebApp&&Telegram.WebApp.showConfirm){Telegram.WebApp.showConfirm(q,function(ok){if(ok)wipe()});return}}catch(e){}if(confirm(q))wipe()};
-draw();
+var TASKS=[["channel","Rejoindre le canal Telegram","Congo Community : actualités et ressources"],["group","Rejoindre le groupe de discussion","Blockchain RD Congo : échanger avec la communauté"]];
+var SOCIAL=[["x","X (Twitter)"],["facebook","Facebook"],["linkedin","LinkedIn"],["whatsapp","Chaîne WhatsApp"]];
+var TABS=[["accueil","Accueil",'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>'],["education","Éducation",'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.5"/>'],["opportunites","Opportunités",'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>'],["services","Services",'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>'],["profil","Profil",'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"/>']];
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){return null}}
+function jget(k){try{return JSON.parse(ls(k)||"{}")}catch(e){return {}}}
+function prog(){return jget("brdc_v1_progress")}
+function tasks(){return jget("brdc_v1_tasks")}
+function unlocked(){var t=tasks();return !!(t.channel&&t.group)}
+function openL(u){try{if(window.Telegram&&Telegram.WebApp&&Telegram.WebApp.initData){if(/^https?:\/\/t\.me\//.test(u)&&Telegram.WebApp.openTelegramLink)Telegram.WebApp.openTelegramLink(u);else Telegram.WebApp.openLink(u);return}}catch(e){}window.open(u,"_blank")}
+function head(){return '<div class="top"><img src="logo.png" alt="Logo Blockchain RD Congo" onerror="this.remove()"><div><p class="brand">Blockchain RD Congo</p><p class="sig">Comprendre. Connecter. Construire. Innover.</p></div></div>'}
+function tRow(id,t,d,done){return '<div class="task"><span class="chk'+(done?' ok':'')+'">'+(done?'✓':'')+'</span><div class="tt"><b>'+t+'</b><small>'+d+'</small><div class="ta"><button class="mini" data-open="'+id+'"'+(LINKS[id]?'':' disabled')+'>'+(LINKS[id]?'Ouvrir':'Lien bientôt')+'</button><button class="mini'+(done?'':' pri')+'" data-done="'+id+'">'+(done?'Fait ✓':'J’ai rejoint')+'</button></div></div></div>'}
+function cards(P){var n=0,h="",ok=unlocked();mods.forEach(function(m,i){var p=P[m.id],lab="Module "+(i+1),t='<b>'+lab+' · '+m.t+'</b><span>'+m.d+'</span>';
+ if(!m.f){h+='<div class="card lock">'+t+'<span class="st">Bientôt disponible</span></div>';return}
+ if(!m.free&&!ok){h+='<a class="card lock" href="#accueil">'+t+'<span class="st">🔒 À débloquer</span></a>';return}
+ if(p&&p.done){n++;h+='<a class="card done" href="'+m.f+'">'+t+'<span class="st">Terminé · quiz '+p.score+' sur '+p.total+'</span></a>'}
+ else h+='<a class="card" href="'+m.f+'">'+t+'<span class="st">Commencer</span></a>'});return {h:h,n:n}}
+function bar(n){return '<div class="bar"><i style="width:'+Math.round(n/mods.length*100)+'%"></i></div><p class="pg">'+n+' sur '+mods.length+' modules terminés</p>'}
+function rank(n){return n>=6?"Innovateur":n>=3?"Bâtisseur":n>=2?"Connecteur":n>=1?"Explorateur":"Curieux"}
+function soon(ic,t,p){return head()+'<h1>'+t+'</h1><div class="soon"><div class="ic">'+ic+'</div><h2>Bientôt disponible</h2><p>'+p+'</p></div>'}
+function svg(x){return '<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+x+'</svg>'}
+var VIEWS={
+accueil:function(){var tk=tasks(),ok=unlocked(),h=head()+'<h1>Bienvenue !</h1><p>Blockchain RD Congo est une initiative éducative et communautaire. Cet outil t’aide à comprendre la blockchain et le Web3 pas à pas, pour pouvoir un jour explorer et construire avec cette technologie.</p>';
+ if(ok)h+='<div class="box ok"><h2>Éducation débloquée ✓</h2><p>Merci de faire partie de la communauté. Tous les modules disponibles sont ouverts.</p><a class="cta2" href="#education">Aller à l’éducation</a></div>';
+ else h+='<div class="box"><h2>Débloque l’éducation</h2><p class="small">Le Module 1 est libre. Pour ouvrir les autres modules, rejoins le canal et le groupe :</p>'+TASKS.map(function(x){return tRow(x[0],x[1],x[2],tk[x[0]])}).join("")+'</div>';
+ h+='<div class="box"><h2>Suis-nous aussi <span class="opt">facultatif</span></h2>'+SOCIAL.map(function(x){return '<div class="soc"><b>'+x[1]+'</b><button class="mini" data-open="'+x[0]+'"'+(LINKS[x[0]]?'':' disabled')+'>'+(LINKS[x[0]]?'Ouvrir':'Bientôt')+'</button></div>'}).join("")+'</div>';
+ return h},
+education:function(){var c=cards(prog()),h=head()+'<h1>Éducation</h1>'+bar(c.n)+'<h2>Les 6 modules du parcours</h2>'+c.h;
+ if(!unlocked())h+='<div class="notice">Pour débloquer les autres modules, abonne-toi au canal Telegram et rejoins le groupe de discussion. <a href="#accueil" class="lk">Débloquer maintenant</a></div>';
+ return h+'<p class="note">Pour l’instant, ta progression est enregistrée uniquement sur ton téléphone.</p>'},
+opportunites:function(){return soon(svg('<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>'),"Opportunités","Formations, événements, hackathons, bourses et stages seront publiés ici, vérifiés par l’équipe.")},
+services:function(){return soon(svg('<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>'),"Services","Cette section accueillera des services utiles à la communauté. Elle sera activée plus tard.")},
+profil:function(){var P=prog(),tk=tasks(),n=0,perfect=false,u=null;mods.forEach(function(m){if(P[m.id]&&P[m.id].done){n++;if(P[m.id].score==P[m.id].total)perfect=true}});
+ try{u=Telegram.WebApp.initDataUnsafe.user}catch(e){}
+ var nm=(u&&u.first_name)||"Visiteur",B=[["🌱","Premier pas",!!ls("brdc_v1_seen")],["🔗","Communauté",unlocked()],["📘","Module 1",!!(P.m1&&P.m1.done)],["⛓️","Module 2",!!(P.m2&&P.m2.done)],["⭐","Quiz parfait",perfect],["🤝","Parrain",false]];
+ return head()+'<div class="box" style="text-align:center"><div class="av">'+nm.charAt(0).toUpperCase()+'</div><b style="font-size:20px">'+nm+'</b><br><span class="rank">'+rank(n)+'</span></div>'+bar(n)+
+ '<div class="box"><h2>Mes badges</h2><div class="badges">'+B.map(function(x){return '<div class="bd'+(x[2]?'':' off')+'"><i>'+x[0]+'</i>'+x[1]+'</div>'}).join("")+'</div></div>'+
+ '<div class="box"><h2>Parrainage</h2><p class="small">Bientôt : ton lien personnel pour inviter tes amis et monter en rang.</p></div>'+
+ '<div class="box"><h2>Réglages</h2><button class="r" id="again">Revoir l’introduction</button><br><button class="r" id="reset">Effacer ma progression (phase de test)</button></div>'}
+};
+function show(t){if(!VIEWS[t])t="accueil";document.getElementById("view").innerHTML=VIEWS[t]();
+ document.getElementById("tabs").innerHTML=TABS.map(function(x){return '<button class="tab'+(x[0]==t?' on':'')+'" data-t="'+x[0]+'" aria-label="'+x[1]+'"><svg viewBox="0 0 24 24">'+x[2]+'</svg>'+x[1]+'</button>'}).join("");
+ Array.prototype.forEach.call(document.querySelectorAll(".tab"),function(b){b.onclick=function(){location.hash=b.getAttribute("data-t")}});
+ var v=document.getElementById("view");v.onclick=function(e){var el=e.target.closest("[data-open],[data-done],#again,#reset");if(!el)return;
+  if(el.hasAttribute("data-open")){if(LINKS[el.getAttribute("data-open")])openL(LINKS[el.getAttribute("data-open")]);return}
+  if(el.hasAttribute("data-done")){var k=el.getAttribute("data-done"),tk=tasks();tk[k]=!tk[k];ls("brdc_v1_tasks",JSON.stringify(tk));show(t);return}
+  if(el.id=="again"){intro(0);return}
+  if(el.id=="reset"){var q="Effacer ta progression sur cet appareil ?";function w(){ls("brdc_v1_progress",null);ls("brdc_v1_tasks",null);show(t)}try{if(window.Telegram&&Telegram.WebApp&&Telegram.WebApp.initData&&Telegram.WebApp.showConfirm){Telegram.WebApp.showConfirm(q,function(ok){if(ok)w()});return}}catch(x){}if(confirm(q))w()}};
+ window.scrollTo(0,0)}
+function route(){show((location.hash||"#accueil").slice(1))}
+window.addEventListener("hashchange",route);
+var tm=null;
+function intro(i){si=i;var el=document.getElementById("intro"),s=SLIDES[i];el.className="show";
+ var segs='<div class="segs">'+SLIDES.map(function(x,j){return '<div class="'+(j<i?'full':j==i?'run':'')+'"><i></i></div>'}).join("")+'</div>';
+ el.innerHTML=segs+'<button class="skip" id="sk">Passer</button><div class="art">'+s.art+'</div><p class="cap">'+s.cap+'</p><p class="sub">'+s.sub+'</p><button class="cta" id="nx">'+(i==SLIDES.length-1?'Commencer':'Suivant')+'</button>';
+ document.getElementById("sk").onclick=done;document.getElementById("nx").onclick=nxt;
+ clearTimeout(tm);if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches))tm=setTimeout(nxt,6000)}
+function nxt(){clearTimeout(tm);if(si<SLIDES.length-1)intro(si+1);else done()}
+function done(){clearTimeout(tm);ls("brdc_v1_seen","1");document.getElementById("intro").className=""}
+route();if(!ls("brdc_v1_seen"))intro(0);
 </script>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}}catch(e){}</script>
